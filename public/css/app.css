@@ -1,0 +1,16 @@
+/* header-nav */
+.navbar-nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: right;
+    align-items: end;
+}
+
+.nav-link, .dropdown-item{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+}
+
+/* register form */

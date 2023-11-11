@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('places', function (Blueprint $table) {
+            $table->id();
+            $table->integer('hall_id');
+            $table->string('type');
+            $table->integer('row');
+            $table->integer('place');
+            $table->timestamps();
+            $table->index('hall_id', 'place_hall_idx');
+            $table->foreign('hall_id', 'place_hall_fk')->on('halls')->references('id')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('places');
+    }
+};
