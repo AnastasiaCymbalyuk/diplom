@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Hall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Hall;
+use App\Http\Controllers\Hall\BaseController;
 use Illuminate\Http\Request;
 
-class UpdateActiveController extends Controller
+class UpdateActiveController extends BaseController
 {
     public function __invoke($value, $valueNew)
     {
-        $hall = Hall::where("isActive", $value)->update(["isActive" => $valueNew]);
+        $this->service->updateActive($value, $valueNew);
     }
 }

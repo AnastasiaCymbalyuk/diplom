@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Movie;
 
-use App\Http\Controllers\Controller;
-use App\Models\Movie;
+use App\Http\Controllers\Movie\BaseController;
+use App\Http\Requests\Movie\StoreRequest;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'name' => 'string|min:1|max:50',
-        ]);
-        Movie::create($data);
+        $data = $request->validated();
+        $this->service->store($data);
     }
 }

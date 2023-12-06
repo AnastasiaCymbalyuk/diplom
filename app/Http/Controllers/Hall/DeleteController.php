@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Hall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Hall;
-use App\Models\Place;
+use App\Http\Controllers\Hall\BaseController;
 use Illuminate\Http\Request;
 
-class DeleteController extends Controller
+class DeleteController extends BaseController
 {
     public function __invoke($id)
     {
-        $hall = Hall::find($id);
-        $hall->delete();
+        $this->service->delete($id);
     }
 }

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Hall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Hall;
+use App\Http\Controllers\Hall\BaseController;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $hall = Hall::all();
-        return $hall;
+        return $this->service->index();
     }
 }

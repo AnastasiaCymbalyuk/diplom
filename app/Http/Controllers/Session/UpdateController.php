@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Session;
 
-use App\Http\Controllers\Controller;
-use App\Models\Session;
+use App\Http\Controllers\Session\BaseController;
 use Illuminate\Http\Request;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke($id)
     {
-        $session = Session::where('hall_id', $id)->delete();
+        $this->service->update($id);
     }
 }

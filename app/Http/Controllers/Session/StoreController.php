@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers\Session;
 
-use App\Http\Controllers\Controller;
-use App\Models\Session;
+use App\Http\Controllers\Session\BaseController;
+use App\Http\Requests\Session\StoreRequest;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'hall_id' => 'integer',
-            'time' => 'string',
-            'movie_id' => 'integer',
-        ]);
-        Session::create($data);
+        $data = $request->validated();
+        $this->service->store($data);
     }
 }

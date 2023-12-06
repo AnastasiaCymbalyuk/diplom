@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Ticket;
 
-use App\Http\Controllers\Controller;
-use App\Models\Ticket;
+use App\Http\Controllers\Ticket\BaseController;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $ticket = Ticket::all();
-        return $ticket;
+        return $this->service->index();
     }
 }

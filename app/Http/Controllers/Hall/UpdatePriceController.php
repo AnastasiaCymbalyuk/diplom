@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers\Hall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Hall;
+use App\Http\Controllers\Hall\BaseController;
+use App\Http\Requests\Hall\UpdatePriceRequest;
 use Illuminate\Http\Request;
 
-class UpdatePriceController extends Controller
+class UpdatePriceController extends BaseController
 {
-    public function __invoke($id)
+    public function __invoke(UpdatePriceRequest $request, $id)
     {
-        $data = request()->validate([
-            'price' => 'integer',
-            'vipPrice' => 'integer',
-        ]);
-        $hall = Hall::find($id);
-        $hall->price = $data['price'];
-        $hall->vipPrice = $data['vipPrice'];
-        $hall->save();
+        $data = $request->validated();
+        $this->service->updatePrice($data, $id);
     }
 }

@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Hall;
 
-use App\Http\Controllers\Controller;
-use App\Models\Hall;
+use App\Http\Controllers\Hall\BaseController;
+use App\Http\Requests\Hall\StoreRequest;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'name' => 'string|min:1|max:10',
-        ]);
-        Hall::create($data);
+        $data = $request->validated();
+        $this->service->store($data);
     }
 }

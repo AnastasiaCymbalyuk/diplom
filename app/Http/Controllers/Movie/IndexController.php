@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Movie;
 
-use App\Http\Controllers\Controller;
-use App\Models\Movie;
+use App\Http\Controllers\Movie\BaseController;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $movie = Movie::all();
-        return $movie;
+        return $this->service->index();
     }
 }

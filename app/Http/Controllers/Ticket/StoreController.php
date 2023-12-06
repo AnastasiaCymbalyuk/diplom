@@ -2,24 +2,15 @@
 
 namespace App\Http\Controllers\Ticket;
 
-use App\Http\Controllers\Controller;
-use App\Models\Ticket;
+use App\Http\Controllers\Ticket\BaseController;
+use App\Http\Requests\Ticket\StoreRequest;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'place_id' => 'integer',
-            'session_id' => 'integer',
-            'type' => 'string|min:2|max:25',
-            'date' => 'string',
-            'price' => 'integer',
-            'row' => 'integer|max:15',
-            'place' => 'integer|max:15',
-            'qr' => 'string',
-        ]);
-        Ticket::create($data);
+        $data = $request->validated();
+        $this->service->store($data);
     }
 }

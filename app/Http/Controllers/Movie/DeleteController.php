@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Movie;
 
-use App\Http\Controllers\Controller;
-use App\Models\Movie;
+use App\Http\Controllers\Movie\BaseController;
 use Illuminate\Http\Request;
 
-class DeleteController extends Controller
+class DeleteController extends BaseController
 {
     public function __invoke($id)
     {
-        $movie = Movie::find($id);
-        $movie->delete();
+        $this->service->delete($id);
     }
 }

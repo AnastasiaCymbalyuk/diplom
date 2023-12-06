@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Session;
 
-use App\Http\Controllers\Controller;
-use App\Models\Session;
+use App\Http\Controllers\Session\BaseController;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $session = Session::all();
-        return $session;
+        return $this->service->index();
     }
 }
